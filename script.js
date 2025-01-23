@@ -4,7 +4,37 @@ let playerScore = 0;
 let computerScore = 0;
 let gameLead = '';
 
-const getUserChoice = (userInput) => {
+  const timer = {
+    timeLeft: 3, //Begins a timer of 2 seconds
+    timerInterval: null,
+
+    start: function() {
+        this.timerCountdown();
+    },
+
+    timerCountdown: function() {
+        for (let i = this.timeLeft; i >= 0; i--) {
+            setTimeout(() => {
+                document.getElementById('timer').innerHTML = `Time left: ${i} seconds`;
+
+                if (i === 0 && userChoice === '') {
+                    alert("Time's up! Point goes to the computer!");
+                    computerScore++;
+                    getComputerChoice();
+                }
+            }, (this.timeLimit - i) * 1000);
+        }
+    },
+
+    reset: function () {
+    clearInterval(this.timerInterval);
+    this.timeLeft = 3;
+    document.getElementById('timer').innerHTML = "Time left: 3 seconds";
+    
+    }
+  };
+
+  const getUserChoice = (userInput) => {
     userChoice = userInput;
     if (userChoice === 'Rock') {
       document.getElementById('userChoice').className = 'rockChar';
@@ -14,6 +44,7 @@ const getUserChoice = (userInput) => {
       document.getElementById('userChoice').className = 'scissorsChar';
     }
     document.getElementById('userChoice').innerHTML = ('Player selected: ' + userChoice);
+    clearInterval(timer.timerInterval);
     getComputerChoice();
 }
 
@@ -109,4 +140,9 @@ const resetButton = () => {
   document.getElementById('playerScore').className = '';
   document.getElementById('computerScore').className = '';
   document.getElementById('gameLead').className = '';
+}
+
+const startGame = () => {
+    userChoice = '';
+    timer.start();
 }
