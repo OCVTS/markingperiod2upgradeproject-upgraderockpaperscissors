@@ -34,6 +34,25 @@ button {
     margin: 12px;
 }
 
+#gameStart {
+    font-size: 16px;
+    height: 48px;
+    color: yellow;
+    box-shadow: 0 0 20px yellow;
+    border-color: yellow;
+    margin-top: 25px;
+}
+#gameStart:hover {
+    color: rgb(255, 255, 105);
+    box-shadow: 0 0 40px rgb(255, 255, 105);
+    border-color: rgb(255, 255, 105);
+}
+#gameStart:active {
+    color: rgb(255, 255, 200);
+    box-shadow: 0 0 60px rgb(255, 255, 200);;
+    border-color: rgb(255, 255, 200);
+}
+
 .rockChar {
     color: grey;
     border-color: grey;
@@ -53,7 +72,7 @@ button {
 }
 
 #gameInfo {
-    font-size: 32px;
+    font-size: 24px;
 }
 
 #userChoice, #computerChoice {

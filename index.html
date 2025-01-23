@@ -12,15 +12,15 @@
         </header>
         <main>
             <h2>Make your selection...</h2>
-            <div id="timer">Time left: 3 seconds</div>
+            <div id="timer">Time left: 3</div>
             <h3 class="rockChar"><ins>Rock = Gray</ins></h3>
             <h3 class="paperChar"><ins>Paper = White</ins></h3>
             <h3 class="scissorsChar"><ins>Scissors = Red</ins></h3>
-            <button onclick="getUserChoice('Rock')" class="rockChar" id="rockSelect">ᨒ</button>
-            <button onclick="getUserChoice('Paper')" class="paperChar" id="paperSelect">🗒</button>
-            <button onclick="getUserChoice('Scissors')" class="scissorsChar" id="scissorsSelect">✄</button>
-
-            <button onclick="startGame()">Start Game</button>
+            <button onclick="getUserChoice('Rock')" class="rockChar" id="rockSelect" disabled>ᨒ</button>
+            <button onclick="getUserChoice('Paper')" class="paperChar" id="paperSelect" disabled>🗒</button>
+            <button onclick="getUserChoice('Scissors')" class="scissorsChar" id="scissorsSelect" disabled>✄</button>
+            <br>
+            <button onclick="startGame()" id="gameStart">Start Game</button>
             <div id="gameInfo">
             <p id="userChoice">Your choice goes here...</p>
             <p id="computerChoice">The computer's choice goes here...</p>

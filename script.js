@@ -4,35 +4,38 @@ let playerScore = 0;
 let computerScore = 0;
 let gameLead = '';
 
-  const timer = {
-    timeLeft: 3, //Begins a timer of 2 seconds
-    timerInterval: null,
+const timer = {
+  timeLeft: 2,
+  timerInterval: null,
 
-    start: function() {
-        this.timerCountdown();
-    },
+  start: function () {
+    enableButtons();
+      this.reset(); // Reset timer before starting
+      this.timerInterval = setInterval(() => {
+          document.getElementById('timer').innerHTML = `Time left: ${this.timeLeft}`;
 
-    timerCountdown: function() {
-        for (let i = this.timeLeft; i >= 0; i--) {
-            setTimeout(() => {
-                document.getElementById('timer').innerHTML = `Time left: ${i} seconds`;
+          if (this.timeLeft === 0) {
+              clearInterval(this.timerInterval); // Stop the timer
+              this.timeLeft = 3; // Reset time
+              if (userChoice === '') {
+                  alert("Time's up! Point goes to the computer!");
+                  computerScore++;
+                  getComputerChoice();
+                  disableButtons();
+              }
+              return;
+          }
 
-                if (i === 0 && userChoice === '') {
-                    alert("Time's up! Point goes to the computer!");
-                    computerScore++;
-                    getComputerChoice();
-                }
-            }, (this.timeLimit - i) * 1000);
-        }
-    },
+          this.timeLeft--;
+      }, 350); // Decrease timer every second
+  },
 
-    reset: function () {
-    clearInterval(this.timerInterval);
-    this.timeLeft = 3;
-    document.getElementById('timer').innerHTML = "Time left: 3 seconds";
-    
-    }
-  };
+  reset: function () {
+      clearInterval(this.timerInterval); // Stop any ongoing timer
+      this.timeLeft = 3; // Reset the timeLeft
+      document.getElementById('timer').innerHTML = "Time left: 3";
+  }
+};
 
   const getUserChoice = (userInput) => {
     userChoice = userInput;
@@ -45,8 +48,11 @@ let gameLead = '';
     }
     document.getElementById('userChoice').innerHTML = ('Player selected: ' + userChoice);
     clearInterval(timer.timerInterval);
+    
+    disableButtons();
     getComputerChoice();
 }
+
 
 const getComputerChoice = () => {
     let randomNumber = Math.floor(Math.random() * 3); 
@@ -121,6 +127,7 @@ const determineWinner = () => {
   }
 }
 const resetButton = () => {
+  timer.reset();
   userChoice = '';
   computerChoice = '';
   playerScore = 0;
@@ -145,4 +152,19 @@ const resetButton = () => {
 const startGame = () => {
     userChoice = '';
     timer.start();
+    enableButtons();
 }
+
+const enableButtons = () => {
+  document.getElementById('rockSelect').disabled = false;
+  document.getElementById('paperSelect').disabled = false;
+  document.getElementById('scissorsSelect').disabled = false;
+}
+
+const disableButtons = () => {
+  document.getElementById('rockSelect').disabled = true;
+  document.getElementById('paperSelect').disabled = true;
+  document.getElementById('scissorsSelect').disabled = true;
+}
+
+disableButtons();
