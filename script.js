@@ -27,7 +27,7 @@ const timer = {
           }
 
           this.timeLeft--;
-      }, 350); // Decrease timer every second
+      }, 500); // Decreases the timer every 350 milliseconds
   },
 
   reset: function () {
@@ -37,8 +37,25 @@ const timer = {
   }
 };
 
+const handleInputChoice = () => {
+  const userInput = document.getElementById('userInput').value;
+  document.getElementById('userInput').value = '';
+  getUserChoice(userInput);
+}
+
   const getUserChoice = (userInput) => {
-    userChoice = userInput;
+
+    const validChoices = ['rock', 'paper', 'scissors'];
+    let choice = userInput.toLowerCase();
+
+    if (!validChoices.includes(choice)) {
+      alert('Wrong choice. Please choose rock, paper, or scissors...')
+      return;
+    }
+
+    userChoice = choice.charAt(0).toUpperCase() + choice.slice(1);
+
+    // userChoice = userInput;
     if (userChoice === 'Rock') {
       document.getElementById('userChoice').className = 'rockChar';
     } else if (userChoice === 'Paper') {
