@@ -1,0 +1,148 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Papyrus';
+    margin-top: 45px;
+    text-shadow: 0 0 20px rgb(207, 207, 207);
+}
+
+h2 {
+    font-family: cursive;
+    text-shadow: 0px 0 4px rgb(207, 207, 207);
+}
+
+table {
+    margin-bottom: 24px;
+}
+
+button {
+    transition: all 0.3s ease;
+    color: white;
+    box-shadow: 0 0 350px rgb(153, 153, 153);
+    font-size: 72px;
+    border-radius: 90px;
+    border-color: white;
+    background-color: black;
+    cursor: pointer;
+    width: 128px;
+    height: 128px;
+    margin: 12px;
+}
+
+.rockChar {
+    color: grey;
+    border-color: grey;
+    text-shadow: 0.5px 0.5px 1px rgb(66, 66, 66);
+}
+
+.paperChar {
+    color: white;
+    border-color: white;
+    text-shadow: 0.5px 0.5px 1px rgb(190, 190, 190);
+}
+
+.scissorsChar {
+    color: red;
+    border-color: red;
+    text-shadow: 0.5px 0.5px 1px rgb(121, 0, 0);
+}
+
+#gameInfo {
+    font-size: 32px;
+}
+
+#userChoice, #computerChoice {
+    font-family: fantasy;
+}
+
+#playerScore, #computerScore {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana;
+}
+
+#gameLead {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.winnerPlayer {
+    color: rgb(0, 255, 0);
+    text-shadow: 0 0 18px green;
+    font-weight: bold;
+}
+.winnerComputer {
+    color: rgb(255, 0, 0);
+    text-shadow: 0 0 18px rgb(66, 0, 0);
+    font-weight: bold;
+}
+.playerLead {
+    color: rgb(0, 110, 0);
+    text-shadow: 0 0 18px rgb(0, 110, 0);
+    text-decoration: underline;
+}
+.computerLead {
+    color: rgb(110, 0, 0);
+    text-shadow: 0 0 18px rgb(66, 0, 0);
+    text-decoration: underline;
+}
+
+#rockSelect:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 25px rgb(190, 190, 190);
+    box-shadow: 0 0 50px rgb(190, 190, 190);
+}
+#rockSelect:active {
+    transform: scale(1.2);
+    text-shadow: 0 0 50px rgb(230, 230, 230);
+    box-shadow: 0 0 100px rgb(230, 230, 230);
+}
+
+
+#paperSelect:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 25px rgb(230, 230, 230);
+    box-shadow: 0 0 50px rgb(190, 190, 190);
+}
+#paperSelect:active {
+    transform: scale(1.2);
+    text-shadow: 0 0 50px rgb(255, 255, 255);
+    box-shadow: 0 0 100px rgb(230, 230, 230);
+}
+
+
+#scissorsSelect:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 25px rgb(194, 0, 0);
+    box-shadow: 0 0 50px rgb(194, 0, 0);
+}
+#scissorsSelect:active {
+    transform: scale(1.2);
+    text-shadow: 0 0 50px rgb(255, 0, 0);
+    box-shadow: 0 0 100px rgb(255, 0, 0);
+}
+
+#resetButton {
+    font-family: cursive;
+    font-size: 24px;
+    width: 100px;
+    height: 100px;
+    border-color: green;
+    color: darkgreen;
+    box-shadow: 0 0 120px rgb(0, 165, 0);
+    transition: all 0.5s ease;
+}
+
+#resetButton:hover {
+    text-shadow: 0 0 8px green;
+    box-shadow: 0 0 24px rgb(0, 255, 0);
+}
+
+#resetButton:active {
+    color: rgb(155, 255, 155);
+    text-shadow: 0 0 24px rgb(155, 255, 155);
+    border-color: rgb(155, 255, 155);
+    box-shadow: 0 0 120px rgb(176, 255, 176);
+}

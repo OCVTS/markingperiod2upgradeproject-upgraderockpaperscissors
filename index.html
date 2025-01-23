@@ -2,14 +2,32 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title></title>
+        <meta name="viewport" content="width=device-length">
+        <title>Rock Paper Scissors</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <header></header>
-        <main></main>
-        <footer></footer>
+        <header>
+            <h1>Rock Paper Scissors</h1>
+        </header>
+        <main>
+            <h2>Make your selection...</h2>
+            <h3 class="rockChar"><ins>Rock = Gray</ins></h3>
+            <h3 class="paperChar"><ins>Paper = White</ins></h3>
+            <h3 class="scissorsChar"><ins>Scissors = Red</ins></h3>
+            <button onclick="getUserChoice('Rock')" class="rockChar" id="rockSelect">ᨒ</button>
+            <button onclick="getUserChoice('Paper')" class="paperChar" id="paperSelect">🗒</button>
+            <button onclick="getUserChoice('Scissors')" class="scissorsChar" id="scissorsSelect">✄</button>
+            <div id="gameInfo">
+            <p id="userChoice">Your choice goes here...</p>
+            <p id="computerChoice">The computer's choice goes here...</p>
+            <p id="winner">The winner is announced here...</p>
+            <p id="playerScore">Player score: 0</p>
+            <p id="computerScore">Computer score: 0</p>
+            <p id="gameLead">Begin the game to see your progress!</p>
+            <button onclick="resetButton('resetButton')" id="resetButton">Reset</button>
+            </div>
+        </main>
         <script src="script.js"></script>
     </body>
 </html>
