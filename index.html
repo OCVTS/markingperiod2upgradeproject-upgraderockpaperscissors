@@ -16,11 +16,11 @@
             <h3 class="rockChar"><ins>Rock = Gray</ins></h3>
             <h3 class="paperChar"><ins>Paper = White</ins></h3>
             <h3 class="scissorsChar"><ins>Scissors = Red</ins></h3>
-            <button onclick="getUserChoice('Rock')" class="rockChar" id="rockSelect" disabled>ᨒ</button>
-            <button onclick="getUserChoice('Paper')" class="paperChar" id="paperSelect" disabled>🗒</button>
-            <button onclick="getUserChoice('Scissors')" class="scissorsChar" id="scissorsSelect" disabled>✄</button>
+            <button onclick="getUserChoice('rock')" class="rockChar" id="rockSelect" disabled>ᨒ</button>
+            <button onclick="getUserChoice('paper')" class="paperChar" id="paperSelect" disabled>🗒</button>
+            <button onclick="getUserChoice('scissors')" class="scissorsChar" id="scissorsSelect" disabled>✄</button>
             <br>
-            <input type="text" id="userInput" placeholder="Type rock, paper, or scissors..." />
+            <input type="text" id="userInput" name="userInput" placeholder="Type rock, paper, or scissors..." />
             <button onclick="submitChoice()">Submit</button>
             <br>
             <button onclick="startGame()" id="gameStart">Start Game</button>
@@ -31,7 +31,7 @@
             <p id="playerScore">Player score: 0</p>
             <p id="computerScore">Computer score: 0</p>
             <p id="gameLead">Begin the game to see your progress!</p>
-            <button onclick="resetButton('resetButton')" id="resetButton">Reset</button>
+            <button onclick="resetButton()" id="resetButton">Reset</button>
             </div>
         </main>
         <script src="script.js"></script>
