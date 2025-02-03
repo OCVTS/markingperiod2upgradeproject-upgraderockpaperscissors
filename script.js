@@ -2,23 +2,19 @@ let userChoice = '';
 let computerChoice = '';
 let playerScore = 0;
 let computerScore = 0;
-let gameLead = '';
 
 const choices = ['rock', 'paper', 'scissors'];
 
 const timer = {
-  timeLeft: 3,  // Start with 3 seconds instead of 2 to allow a more reasonable countdown
+  timeLeft: 3,
   timerInterval: null,
-
   start: function () {
-    enableButtons();
     this.reset(); // Reset timer before starting
     this.timerInterval = setInterval(() => {
       document.getElementById('timer').innerHTML = `Time left: ${this.timeLeft}`;
-
       if (this.timeLeft === 0) {
         clearInterval(this.timerInterval); // Stop the timer
-        this.timeLeft = 3; // Reset time
+        this.timeLeft = 3;
         if (userChoice === '') {
           alert("Time's up! Point goes to the computer!");
           computerScore++;
@@ -27,99 +23,75 @@ const timer = {
         }
         return;
       }
-
       this.timeLeft--;
-    }, 1000); // Countdown every second
+    }, 1000);
   },
-
   reset: function () {
-    clearInterval(this.timerInterval); // Stop any ongoing timer
-    this.timeLeft = 3; // Reset the timeLeft
+    clearInterval(this.timerInterval);
+    this.timeLeft = 3;
     document.getElementById('timer').innerHTML = "Time left: 3";
   }
 };
 
 const getUserChoice = (choice) => {
-  userChoice = choice.charAt(0).toUpperCase() + choice.slice(1);
-
-  document.getElementById('userChoice').innerHTML = 'Player selected: ' + userChoice;
-  document.getElementById('userChoice').className = `${choice}Char`;
-  clearInterval(timer.timerInterval);
-
+  userChoice = choice;
+  document.getElementById('userChoice').innerHTML = `Player selected: ${capitalize(userChoice)}`;
   disableButtons();
   getComputerChoice();
-}
-
-
+  clearInterval(timer.timerInterval); // Stop timer when user makes a choice
+};
 
 const getComputerChoice = () => {
-  let randomIndex = Math.floor(Math.random() * 3); 
+  const randomIndex = Math.floor(Math.random() * choices.length);
   computerChoice = choices[randomIndex];
-  document.getElementById('computerChoice').innerHTML = ('Computer selected: ' + computerChoice);
-  document.getElementById('computerChoice').className = `${computerChoice.toLowerCase()}Char`;
+  document.getElementById('computerChoice').innerHTML = `Computer selected: ${capitalize(computerChoice)}`;
   determineWinner();
-}
+};
 
 const determineWinner = () => {
-  let result = '';  // Declare result here
+  let result = '';
 
-  // Check for a draw
+  // If it's a tie
   if (userChoice === computerChoice) {
-    result = 'The game is a draw!';
-    document.getElementById('winner').className = '';
+    result = 'It\'s a draw!';
   }
-
-  // If a winning character was chosen from the user
-  if ((userChoice === 'Rock' && computerChoice === 'Scissors') ||
-      (userChoice === 'Paper' && computerChoice === 'Rock') ||
-      (userChoice === 'Scissors' && computerChoice === 'Paper')) {
+  // If player wins
+  else if (
+    (userChoice === 'rock' && computerChoice === 'scissors') ||
+    (userChoice === 'paper' && computerChoice === 'rock') ||
+    (userChoice === 'scissors' && computerChoice === 'paper')
+  ) {
     result = 'You win!';
-    document.getElementById('winner').className = 'winnerPlayer';
     playerScore++;
   }
-
-  // If a winning character was chosen from the computer
-  if ((userChoice === 'Rock' && computerChoice === 'Paper') ||
-      (userChoice === 'Paper' && computerChoice === 'Scissors') ||
-      (userChoice === 'Scissors' && computerChoice === 'Rock')) {
+  // If computer wins
+  else {
     result = 'The computer wins!';
-    document.getElementById('winner').className = 'winnerComputer';
     computerScore++;
   }
 
-  updateGameLead(result);
+  updateScores(result);
 };
 
-const updateGameLead = (result) => {
+const updateScores = (result) => {
   document.getElementById('winner').innerHTML = result;
-  document.getElementById("playerScore").innerHTML = `Player score: ${playerScore}`; // Updates player score
-  document.getElementById('playerScore').className = 'winnerPlayer';
-  document.getElementById("computerScore").innerHTML = `Computer score: ${computerScore}`; // Updates computer score
-  document.getElementById('computerScore').className = 'winnerComputer';
+  document.getElementById("playerScore").innerHTML = `Player score: ${playerScore}`;
+  document.getElementById("computerScore").innerHTML = `Computer score: ${computerScore}`;
+  
+  updateGameLead();
+};
 
+const updateGameLead = () => {
+  let gameLead = '';
+  
   if (playerScore > computerScore) {
-    gameLead = playerScore - computerScore;
-    if (gameLead === 1) {
-      document.getElementById('gameLead').innerHTML = `You are currently winning by ${gameLead} point!`;
-      document.getElementById('gameLead').className = 'playerLead';
-    } else if (gameLead > 1) {
-      document.getElementById('gameLead').innerHTML = `You are currently winning by ${gameLead} points!`;
-      document.getElementById('gameLead').className = 'playerLead';
-    }
+    gameLead = `You are leading by ${playerScore - computerScore} point(s)!`;
+    document.getElementById('gameLead').innerHTML = gameLead;
   } else if (computerScore > playerScore) {
-    gameLead = computerScore - playerScore;
-    if (gameLead === 1) {
-      document.getElementById('gameLead').innerHTML = `The computer is winning by ${gameLead} point!`;
-      document.getElementById('gameLead').className = 'computerLead';
-    } else if (gameLead > 1) {
-      document.getElementById('gameLead').innerHTML = `The computer is winning by ${gameLead} points!`;
-      document.getElementById('gameLead').className = 'computerLead';
-    }
-  }
-
-  if (playerScore === computerScore) {
-    document.getElementById('gameLead').innerHTML = `Tied for the lead!`;
-    document.getElementById('gameLead').className = 'paperChar';
+    gameLead = `The computer is leading by ${computerScore - playerScore} point(s)!`;
+    document.getElementById('gameLead').innerHTML = gameLead;
+  } else {
+    document.getElementById('gameLead').innerHTML = `It’s a tie!`;
   }
 };
 
@@ -129,7 +101,6 @@ const resetButton = () => {
   computerChoice = '';
   playerScore = 0;
   computerScore = 0;
-  gameLead = '';
 
   document.getElementById('userChoice').innerHTML = 'Your choice goes here...';
   document.getElementById('computerChoice').innerHTML = "The computer's choice goes here...";
@@ -138,34 +109,32 @@ const resetButton = () => {
   document.getElementById('computerScore').innerHTML = 'Computer score: 0';
   document.getElementById('gameLead').innerHTML = 'Begin the game to see your progress!';
 
+  document.getElementById('gameLead').className = '';
   document.getElementById('userChoice').className = '';
   document.getElementById('computerChoice').className = '';
   document.getElementById('winner').className = '';
   document.getElementById('playerScore').className = '';
   document.getElementById('computerScore').className = '';
-  document.getElementById('gameLead').className = '';
 
-  // Ensure the game lead shows correctly after reset
-  document.getElementById('gameLead').innerHTML = `Tied for the lead!`;
-  document.getElementById('gameLead').className = 'paperChar';
-}
+  enableButtons();
+};
 
 const startGame = () => {
   userChoice = '';
   timer.start();
   enableButtons();
-}
+};
 
 const enableButtons = () => {
   choices.forEach(choice => {
     document.getElementById(`${choice}Select`).disabled = false;
   });
-}
+};
 
 const disableButtons = () => {
   choices.forEach(choice => {
     document.getElementById(`${choice}Select`).disabled = true;
-  })
-}
+  });
+};
 
-disableButtons();
+const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
