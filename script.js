@@ -54,6 +54,7 @@ const determineWinner = () => {
   // If it's a tie
   if (userChoice === computerChoice) {
     result = 'It\'s a draw!';
+    document.getElementById('winner').className = '';
   }
   // If player wins
   else if (
@@ -62,11 +63,13 @@ const determineWinner = () => {
     (userChoice === 'scissors' && computerChoice === 'paper')
   ) {
     result = 'You win!';
+    document.getElementById('winner').className = 'winnerPlayer';
     playerScore++;
   }
   // If computer wins
   else {
     result = 'The computer wins!';
+    document.getElementById('winner').className = 'winnerComputer';
     computerScore++;
   }
 
@@ -86,10 +89,10 @@ const updateGameLead = () => {
   
   if (playerScore > computerScore) {
     gameLead = `You are leading by ${playerScore - computerScore} point(s)!`;
-    document.getElementById('gameLead').innerHTML = gameLead;
+    document.getElementById('gameLead').className = 'playerLead';
   } else if (computerScore > playerScore) {
     gameLead = `The computer is leading by ${computerScore - playerScore} point(s)!`;
-    document.getElementById('gameLead').innerHTML = gameLead;
+    document.getElementById('gameLead').className = 'computerLead';
   } else {
     document.getElementById('gameLead').innerHTML = `It’s a tie!`;
   }
