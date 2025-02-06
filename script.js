@@ -16,7 +16,7 @@ const timer = {
         clearInterval(this.timerInterval); // Stop the timer
         this.timeLeft = 3;
         if (userChoice === '') {
-          alert("Time's up! Point goes to the computer!");
+          alert("Time's up! 2 points goes to the computer!");
           computerScore++;
           getComputerChoice();
           disableButtons();
