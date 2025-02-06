@@ -18,6 +18,7 @@ h2 {
 
 table {
     margin-bottom: 24px;
+    width: 0;
 }
 
 button {
@@ -54,8 +55,8 @@ button {
 }
 
 .rockChar {
-    color: grey;
-    border-color: grey;
+    color: gray;
+    border-color: gray;
     text-shadow: 0.5px 0.5px 1px rgb(66, 66, 66);
 }
 
@@ -70,6 +71,7 @@ button {
     border-color: red;
     text-shadow: 0.5px 0.5px 1px rgb(121, 0, 0);
 }
+
 
 #gameInfo {
     font-size: 24px;
