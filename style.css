@@ -93,6 +93,7 @@ button {
     font-size: 24px;
     font-family: 'Courier New', Courier, monospace;
     color: rgb(95, 0, 0);
+    text-shadow: 0.5px 0.5px 1px rgb(95, 0, 0);
 }
 
 .winnerPlayer {
